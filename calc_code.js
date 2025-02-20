@@ -9,7 +9,7 @@ function calculate(rate, hours, shifts, worked, accrued, banked, dateString_p, d
     let payDate = new Date(dateString_p.slice(4, 8), dateString_p.slice(2, 4) - 1, dateString_p.slice(0, 2)); // Convert DDMMYYYY to Date object
     let inputDate = new Date(dateString_f.slice(4, 8), dateString_f.slice(2, 4) - 1, dateString_f.slice(0, 2)); // Convert DDMMYYYY to Date object
     
-    let diffInMillis = inputDate - currentDate;  // Difference in milliseconds
+    let diffInMillis = inputDate - payDate;  // Difference in milliseconds
     let diffInDays = diffInMillis / (1000 * 3600 * 24);  // Convert to days
     let Future = Math.floor(diffInDays / 7);  // Convert days to weeks and round down
 
