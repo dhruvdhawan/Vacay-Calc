@@ -2,7 +2,7 @@
 
 - The idea is to have members use their last pay cheque to find an estimate of their vacation
 
-- They'll need the wage rate, total earnings for the week, accrued vacation amount, and total vacation amount from their last paystub.
+- They'll need the wage rate, total **hours** for the week, accrued vacation amount, and total vacation amount from their last paystub.
 
 - They'll also need to input the number of hours per shift and shifts per week. (Shifts per week is to make the estimation easier, rather than actually needing to figure out how many Mon-Tue-Wed cycles happen, and hours per shift lets us output an estimated number of shifts they can request.)
 
@@ -10,7 +10,7 @@
 
 - The number of weeks between the current date and the target date is calculated. (Floor is taken so it will be a conservative estimation.)
 
-- The percentage the member gets is found by dividing the accrued vacation by the total earnings for the pay period. (This should always work no matter the number of hours.)
+- The percentage the member gets is found by dividing the accrued vacation by the total hours for for the pay period multiplied by their wage rate. (Vacation is accrued based off regular rate for all hours worked)
 
 - The number of hours per week is calculated from the hours per shift and shifts per week.
 
