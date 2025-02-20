@@ -1,56 +1,54 @@
 function calculateVacation() {
-    // Get input values
     const rate = parseFloat(document.getElementById('rate').value);
     const hours = parseFloat(document.getElementById('hours').value);
     const shifts = parseFloat(document.getElementById('shifts').value);
-    const earnings = parseFloat(document.getElementById('earnings').value);
+    const worked = parseFloat(document.getElementById('worked').value);
     const accrued = parseFloat(document.getElementById('accrued').value);
     const banked = parseFloat(document.getElementById('banked').value);
-    const dateString = document.getElementById('dateString').value;
+    const dateString_p = document.getElementById('dateString_p').value;
+    const dateString_f = document.getElementById('dateString_f').value;
 
-    // Basic validation
-    if ([rate, hours, shifts, earnings, accrued, banked].some(isNaN) || dateString.length !== 8) {
+    if ([rate, hours, shifts, worked, accrued, banked].some(isNaN) || dateString_p.length !== 8 || dateString_f.length !== 8) {
         alert('Please fill all fields with valid numbers');
         return;
     }
 
-    // Perform calculation
-    const result = calculate(rate, hours, shifts, earnings, accrued, banked, dateString);
-    
-    // Display results
+    const result = calculate(rate, hours, shifts, worked, accrued, banked, dateString_p, dateString_f);
     document.getElementById('hoursResult').textContent = result.hours;
     document.getElementById('shiftsResult').textContent = result.shifts;
 }
 
-function calculate(rate, hours, shifts, earnings, accrued, banked, dateString) {
+function calculate(rate, hours, shifts, worked, accrued, banked, dateString_p, dateString_f) {
     // Step 1: Calculate percentage
-    const percent = accrued / earnings;
+    const Percent = accrued / (rate * worked);
     
     // Step 2: Weekly hours
-    const weeklyHours = hours * shifts;
-    
-    // Step 3: Calculate weeks between dates
-    const day = dateString.slice(0, 2);
-    const month = dateString.slice(2, 4) - 1; // Months are 0-indexed
-    const year = dateString.slice(4, 8);
-    const targetDate = new Date(year, month, day);
-    const currentDate = new Date();
-    
-    const timeDiff = targetDate - currentDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-    const weeksDiff = Math.floor(daysDiff / 7);
+    const Weekly = hours * shifts;
 
-    // Step 4: New vacation
-    const newVacation = weeksDiff * percent * weeklyHours;
-    
-    // Step 5: Existing vacation
-    const existingVacation = banked / rate;
-    
-    // Step 6: Total
-    const totalHours = newVacation + existingVacation;
-    
+    // Step 3: Parse dates exactly as in your calc_code.js
+    const payDate = new Date(
+        dateString_p.slice(4, 8), 
+        dateString_p.slice(2, 4) - 1, 
+        dateString_p.slice(0, 2)
+    );
+    const inputDate = new Date(
+        dateString_f.slice(4, 8), 
+        dateString_f.slice(2, 4) - 1, 
+        dateString_f.slice(0, 2)
+    );
+
+    // Step 4: Calculate weeks difference (EXACT match to your logic)
+    const diffInMillis = inputDate - payDate;
+    const diffInDays = Math.floor(diffInMillis / (1000 * 3600 * 24));
+    const Future = Math.floor(diffInDays / 7);
+
+    // Step 5: Calculations with identical operations
+    const New = Future * Percent * Weekly;
+    const Old = Math.floor((banked + accrued) / rate);
+    const Total = New + Old;
+
     return {
-        hours: Math.floor(totalHours),
-        shifts: Math.floor(totalHours / hours)
+        hours: Math.floor(Total),
+        shifts: Math.floor(Total / hours)
     };
 }

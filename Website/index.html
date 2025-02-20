@@ -26,8 +26,8 @@
         </div>
         
         <div class="input-group">
-            <label>Total Earnings:</label>
-            <input type="number" id="earnings" step="0.01">
+            <label>Hours worked on paystub:</label>
+            <input type="number" id="worked">
         </div>
         
         <div class="input-group">
@@ -37,13 +37,17 @@
         
         <div class="input-group">
             <label>Vacation Balance ($):</label>
-            # To line up with what is on the paystub
             <input type="number" id="banked" step="0.01">
         </div>
         
         <div class="input-group">
+            <label>Paystub Date (DDMMYYYY):</label>
+            <input type="text" id="dateString_p">
+        </div>
+        
+        <div class="input-group">
             <label>Target Date (DDMMYYYY):</label>
-            <input type="text" id="dateString">
+            <input type="text" id="dateString_f">
         </div>
         
         <button onclick="calculateVacation()">Calculate</button>
