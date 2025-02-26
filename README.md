@@ -1,7 +1,7 @@
 # How to access:
 # Click "<> Code" and Download ZIP
 # Extract the ZIP file to a folder
-# Go to the "Website" folder and open "index.html"
+# Go to the "Website" folder and open "calculator.html"
 
 # How to use:
 # Using the information on your last paystub:
