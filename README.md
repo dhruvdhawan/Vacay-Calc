@@ -1,29 +1,26 @@
-# Vacay-Calc
+How to use.
+Click "<> Code" and Download ZIP
+Extract the ZIP file to a folder
+Go to the "Website" folder and open "index.html"
 
-- The idea is to have members use their last pay cheque to find an estimate of their vacation
+Using the information on your last paystub:
+Enter the "Rate" into "Hourly Rate ($)"
+Enter the regular "Hours/Units" into "Hours worked on paystub"
+Enter the "Vacation - Dollars Accrued" amount into "Accrued Vacation ($)"
+Enter the "Vacation - Dollars Balance" amount into "Vacation Balance ($)"
+Enter the END of the paystubs pay period located under "Current" into "Paystub End Date (DDMMYYYY)". Ie, 2/21/2025 would be entered as 21022025.
+The "Hours per Shift" is your regularly scheduled hours you work during a shift.
+The "Shifts per Week" is the number of shifts you are scheduled for each week.
+The "Target Date (DDMMYYYY)" is when you are planning to begin your vacation.
 
-- They'll need the wage rate, total **hours** for the week, accrued vacation amount, and total vacation amount from their last paystub.
 
-- They'll also need to input the number of hours per shift and shifts per week. (Shifts per week is to make the estimation easier, rather than actually needing to figure out how many Mon-Tue-Wed cycles happen, and hours per shift lets us output an estimated number of shifts they can request.)
+FAQ:
 
-- The format I used for the date the member wants to check for is **DDMMYYYY**.
-
-- The number of weeks between the current date and the target date is calculated. (Floor is taken so it will be a conservative estimation.)
-
-- The percentage the member gets is found by dividing the accrued vacation by the total hours for for the pay period multiplied by their wage rate. (Vacation is accrued based off regular rate for all hours worked)
-
-- The number of hours per week is calculated from the hours per shift and shifts per week.
-
-- **Hours per week** * **number of weeks** * **percentage** = *estimated hours of vacation that will be accrued*.
-
-- Total vacation ammount / wage rate = existing vacation hours
-
-- Estimated vacation at the inputted date = existing + accrued.
-
-- Should return the estimated total number of vacation hours available at the inputted date. (Floor of estimated vacation.)
-
-- Should return estimated number of shifts the member can request. (Floor of estimated vacation / hours per shift.)
-
-- I am using floors because I think it is safer to underestimate the amount slightly.
-
-- I have no clue how to actually implement this on the site because I really only use Python and C++. My idea is to have a couple of text boxes that can be filled in and an image of a paystub so members know the values to input.
+"Does this give me the exact number of days I can take for my vacation?"
+No. This is an estimate based off your regularly scheduled shifts and does not include any shifts missed for an illness or any extra shifts that get picked up
+"What if I am casual?"
+Casual workers do not accrue vacation and instead get paid in lieu of benefits.
+"How close is the estimate?"
+It depends. There are some weird things that can happen with wage rate increases, carried over vacation bank, etc. We tried to account for this, but individual circumstances can vary greatly. If the "Available Vacation Hours" is exactly the number you need to take off another shift (ex. 22 hours and 2 shifts), there is a chance you will be shy the actual vacation amount to take off 2 shifts.
+"I am going into my X year of continuous service, doesn't that mean I accrue more vacation?"
+This calculator determines the percentage of vacation that you accrue, which does not change until July 1. If you are scheduling for a vacation after July 1, you might accrue vacation at a higher rate after July 1.
