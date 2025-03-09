@@ -7,55 +7,85 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="calculator">
-        <h1>Vacation Calculator</h1>
-        
-        <div class="input-group">
-            <label>Hourly Rate ($):</label>
-            <input type="number" id="rate" step="0.01">
+    <div class="container">
+        <div class="calculator">
+            <h1>Vacation Calculator</h1>
+            
+            <div class="input-group">
+                <label>Hourly Rate ($):</label>
+                <input type="number" id="rate" step="0.01">
+            </div>
+            
+            <div class="input-group">
+                <label>Hours per Shift:</label>
+                <input type="number" id="hours">
+            </div>
+            
+            <div class="input-group">
+                <label>Shifts per Week:</label>
+                <input type="number" id="shifts">
+            </div>
+            
+            <div class="input-group">
+                <label>Hours worked on paystub:</label>
+                <input type="number" id="worked">
+            </div>
+            
+            <div class="input-group">
+                <label>Accrued Vacation ($):</label>
+                <input type="number" id="accrued" step="0.01">
+            </div>
+            
+            <div class="input-group">
+                <label>Vacation Balance ($):</label>
+                <input type="number" id="banked" step="0.01">
+            </div>
+            
+            <div class="input-group">
+                <label>Paystub End Date (DDMMYYYY):</label>
+                <input type="text" id="dateString_p">
+            </div>
+            
+            <div class="input-group">
+                <label>Target Date (DDMMYYYY):</label>
+                <input type="text" id="dateString_f">
+            </div>
+            
+            <button onclick="calculateVacation()">Calculate</button>
+            
+            <div class="results">
+                <h3>Results:</h3>
+                <p>Available Vacation Hours: <span id="hoursResult">0</span></p>
+                <p>Available Shifts: <span id="shiftsResult">0</span></p>
+            </div>
         </div>
-        
-        <div class="input-group">
-            <label>Hours per Shift:</label>
-            <input type="number" id="hours">
-        </div>
-        
-        <div class="input-group">
-            <label>Shifts per Week:</label>
-            <input type="number" id="shifts">
-        </div>
-        
-        <div class="input-group">
-            <label>Hours worked on paystub:</label>
-            <input type="number" id="worked">
-        </div>
-        
-        <div class="input-group">
-            <label>Accrued Vacation ($):</label>
-            <input type="number" id="accrued" step="0.01">
-        </div>
-        
-        <div class="input-group">
-            <label>Vacation Balance ($):</label>
-            <input type="number" id="banked" step="0.01">
-        </div>
-        
-        <div class="input-group">
-            <label>Paystub End Date (DDMMYYYY):</label>
-            <input type="text" id="dateString_p">
-        </div>
-        
-        <div class="input-group">
-            <label>Target Date (DDMMYYYY):</label>
-            <input type="text" id="dateString_f">
-        </div>
-        
-        <button onclick="calculateVacation()">Calculate</button>
-        
-        <div class="results">
-            <h3>Results:</h3>
-            <p>Available Vacation Hours: <span id="hoursResult">0</span></p>
-            <p>Available Shifts: <span id="shiftsResult">0</span></p>
+
+        <div class="guide">
+            <h2>How to Use</h2>
+            <p>Using the information from your last paystub:</p>
+            <ul>
+                <li><strong>Hourly Rate ($):</strong> Enter your "Rate".</li>
+                <li><strong>Hours worked on paystub:</strong> Enter the regular "Hours/Units".</li>
+                <li><strong>Accrued Vacation ($):</strong> Enter the "Vacation - Dollars Accrued" amount.</li>
+                <li><strong>Vacation Balance ($):</strong> Enter the "Vacation - Dollars Balance" amount.</li>
+                <li><strong>Paystub End Date (DDMMYYYY):</strong> Enter the END of the paystub's pay period (e.g., 2/21/2025 → <code>21022025</code>).</li>
+                <li><strong>Hours per Shift:</strong> Enter your regularly scheduled hours per shift.</li>
+                <li><strong>Shifts per Week:</strong> Enter the number of shifts you are scheduled for each week.</li>
+                <li><strong>Target Date (DDMMYYYY):</strong> Enter the date you plan to begin your vacation.</li>
+            </ul>
+
+            <h2>FAQ</h2>
+            <p><strong>Does this give me the exact number of days I can take for my vacation?</strong></p>
+            <p>No. This is an estimate based on your regularly scheduled shifts and does not account for missed shifts (e.g., illness) or extra shifts picked up.</p>
+
+            <p><strong>What if I am casual?</strong></p>
+            <p>Casual workers do not accrue vacation and are paid in lieu of benefits.</p>
+
+            <p><strong>How close is the estimate?</strong></p>
+            <p>It depends. Factors like wage rate increases or carried-over vacation banks can affect accuracy. If the "Available Vacation Hours" matches exactly (e.g., 22 hours for 2 shifts), you might be slightly short.</p>
+
+            <p><strong>I am going into my X year of continuous service. Doesn't that mean I accrue more vacation?</strong></p>
+            <p>The calculator uses your current vacation accrual percentage, which remains the same until July 1. If your vacation is scheduled after July 1, you may accrue at a higher rate after that date.</p>
         </div>
     </div>
 
