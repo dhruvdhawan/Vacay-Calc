@@ -1,105 +1,192 @@
+/* Base styles and Variables */
 :root {
     --primary-pink: #F47E9B;
-    --background-color: #FFFFFF;
-    --light-gray: #F2F2F2;
-    --text-color: #000000;
-    --hover-pink: #E06A85;
+    --background-light: #FFFFFF;
+    --background-dark: #F8F9FA;
+    --text-light: #6C757D;
+    --text-dark: #343A40;
+    --border-radius: 8px;
+    --shadow: rgba(0, 0, 0, 0.05);
 }
 
-body {
-    font-family: 'Open Sans', Arial, sans-serif;
+/* Global Settings */
+html, body {
+    font-family: 'Inter', 'Open Sans', Arial, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-dark);
     margin: 0;
-    padding: 20px;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    padding: 0;
+    scroll-behavior: smooth;
+    transition: background-color 0.5s ease;
 }
 
+/* Header Enhanced */
+header {
+    background-color: var(--primary-pink);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--background-light);
+    letter-spacing: 0.5px;
+    animation: fadeInDown 1.5s;
+}
+
+/* Containers and Cards */
 .container {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 0 20px;
-    align-items: stretch; /* Ensure both sections have the same height */
 }
 
 .calculator, .guide {
-    background: var(--background-color);
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: var(--background-light);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 16px var(--shadow);
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    animation: fadeInUp 1.2s ease-out;
 }
 
-.calculator {
-    max-width: 50%;
+.calculator:hover, .guide:hover {
+    box-shadow: 0 12px 24px rgba(244,126,155,0.2);
 }
 
-.guide {
-    max-width: 50%;
-    overflow-y: auto; /* Allow scrolling if content overflows */
-}
-
+/* Typography */
 h1, h2 {
+    margin-bottom: 20px;
     color: var(--primary-pink);
-    text-align: center;
-    margin-bottom: 30px;
 }
 
+.calculator h1 {
+    font-size: 2.2em;
+    border-bottom: 2px solid var(--primary-pink);
+    padding-bottom: 10px;
+}
+
+.guide h2 {
+    font-size: 1.8em;
+    position: relative;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-pink);
+}
+
+/* Forms & Inputs */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
+    font-weight: 600;
+    color: var(--text-dark);
     margin-bottom: 5px;
-    color: var(--text-color);
-    font-weight: bold;
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid var(--light-gray);
-    border-radius: 4px;
-    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid var(--text-light);
+    border-radius: var(--border-radius);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+input:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 3px rgba(244,126,155,0.2);
+    outline: none;
+}
+
+/* Buttons Enhanced */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 12px 0;
     background-color: var(--primary-pink);
-    color: var(--background-color);
+    color: var(--background-light);
+    font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    font-size: 1em;
 }
 
 button:hover {
-    background-color: var(--hover-pink);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    background-color: #E06A85;
 }
 
+/* Results Display */
 .results {
     margin-top: 25px;
-    padding: 15px;
-    background-color: var(--light-gray);
-    border-radius: 4px;
+    background-color: var(--background-dark);
+    padding: 20px;
+    border-radius: var(--border-radius);
 }
 
 .results h3 {
     margin-top: 0;
-    color: var(--text-color);
+    color: var(--text-dark);
 }
 
 .results span {
-    font-weight: bold;
     color: var(--primary-pink);
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
+/* FAQ & Guide */
+.guide p, .guide li {
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+strong {
+    color: var(--text-dark);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-pink);
+    color: var(--background-light);
+    padding: 15px;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 0 -4px 8px var(--shadow);
+}
+
+/* Animations */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -107,5 +194,9 @@ button:hover {
 
     .calculator, .guide {
         max-width: 100%;
+    }
+
+    .logo {
+        font-size: 1.4em;
     }
 }
